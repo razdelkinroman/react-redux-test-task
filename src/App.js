@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from 'react-redux';
+import { Switch } from 'react-router-dom';
 
-function App() {
+import LoginPage from 'Containers/LoginPage';
+import MainContainer from 'Containers/MainContainer';
+import { PrivateRoute } from 'Components/Route/PrivateRoute';
+import { PublicRoute } from 'Components/Route/PublicRoute';
+
+const App = props => {
+  const status = useSelector(state => state.login.userStatus);
+  const isLogin = status === 'SUCCESS';
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <PublicRoute path="/login" isLogin={isLogin} component={LoginPage} />
+        <PrivateRoute path="/" isLogin={isLogin} component={MainContainer} />
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
