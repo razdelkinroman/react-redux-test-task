@@ -21,6 +21,20 @@ const data = [
     distance: '100',
     type: 'internal',
     price: '300'
+  },
+  {
+    id: 3,
+    title: 'Посылка №3',
+    distance: '1000',
+    type: 'internal',
+    price: '900'
+  },
+  {
+    id: 2,
+    title: 'Посылка №4',
+    distance: '250',
+    type: 'internal',
+    price: '750'
   }
 ];
 

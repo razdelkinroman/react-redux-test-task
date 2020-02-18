@@ -5,8 +5,8 @@ import { DeleteIconButton, EditIconButton } from 'Components/Buttons';
 
 const useStyles = makeStyles({
   card: {
-    width: 300,
-    height: 200,
+    width: '24%',
+    height: 250,
     position: 'relative',
     margin: '15px 15px 0 0',
     background: 'linear-gradient(180deg, #3e4247 0%, #353535f7 74%)',
@@ -27,7 +27,9 @@ const useStyles = makeStyles({
     '-webkit-box-orient': 'vertical'
   },
   body: {
-    color: '#d2d5da'
+    color: '#d2d5da',
+    position: 'relative',
+    height: 170
   },
   footer: {
     position: 'absolute',
@@ -40,7 +42,10 @@ const useStyles = makeStyles({
   },
   price: {
     textAlign: 'end',
-    margin: '10px 0'
+    margin: '10px 0',
+    position: 'absolute',
+    bottom: 0,
+    right: 10
   }
 });
 

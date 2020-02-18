@@ -6,9 +6,12 @@ import CardsContainer from 'Containers/CardsContainer';
 import Button from 'Components/Buttons';
 import FormContainer from 'Containers/FormContainer';
 import Spinner from 'Components/Spinner';
+import Profile from 'Components/Profile';
 
 import { editOrder, cleanEditForm, getOrders } from 'Actions/orders/actions';
 import { getUserProfile } from 'Actions/login/actions';
+
+import './styles.css';
 
 const MainContainer = props => {
   const [totalPrice, setTotalPrice] = useState('');
@@ -42,9 +45,10 @@ const MainContainer = props => {
   };
 
   return (
-    <Box>
+    <Box component="main">
       {props.loading && <Spinner />}
       <Button onClick={openModal}>Добавить</Button>
+      <Profile />
       <CardsContainer editOrder={editOrderHandler} />
       <FormContainer open={open} closeModal={closeModal} />
       {ordersNotEmpty && (

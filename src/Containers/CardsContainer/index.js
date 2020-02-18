@@ -10,6 +10,7 @@ import { deleteOrder } from 'Actions/orders/actions';
 const useStyles = makeStyles({
   container: {
     display: 'flex',
+    flexWrap: 'wrap',
     marginBottom: 20
   }
 });

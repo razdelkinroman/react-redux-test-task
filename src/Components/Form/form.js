@@ -22,7 +22,7 @@ const initialState = {
   price: ''
 };
 
-const typeDelivery = [
+const typesDelivery = [
   { value: 'international', name: 'Международная' },
   { value: 'internal', name: 'Внутренняя' }
 ];
@@ -59,14 +59,16 @@ const OrderForm = props => {
             <OutlineTextField required label="Расстояние" name="distance" fullWidth />
             <OutlineSelect
               label="Тип доставки"
-              selectItems={typeDelivery}
+              selectItems={typesDelivery}
               name="type"
               value={formValues.type}
               className={classes.fullWidth}
             />
             <Typography variant="h6">Стоимость доставки: {price()} Руб</Typography>
             <Box className={classes.fullWidth}>
-              <Button onClick={() => setFieldValue('price', price())}>Сохранить</Button>
+              <Button type="submit" onClick={() => setFieldValue('price', price())}>
+                Сохранить
+              </Button>
             </Box>
           </Form>
         );
