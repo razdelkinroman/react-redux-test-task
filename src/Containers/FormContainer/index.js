@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addOrder, updateOrder, cleanEditForm } from 'Actions/orders/actions';
 import ModalWindow from 'Components/Modal';
 import Form from 'Components/Form/form';
+
+import { addOrder, updateOrder, cleanEditForm } from 'Actions/orders/actions';
 
 const FormContainer = props => {
   return (

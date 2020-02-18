@@ -3,8 +3,10 @@ import { Formik, Form } from 'formik';
 import { Avatar, Container, LinearProgress, Typography, Paper } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
+
 import PrimaryButton from 'Components/Buttons';
 import { OutlineTextField } from 'Components/Fields';
+
 import schema from './schema';
 
 const useStyles = makeStyles(theme => ({
@@ -51,12 +53,7 @@ function LoginForm({ getToken }) {
               <OutlineTextField name="email" type="email" label="Email" fullWidth />
               <OutlineTextField type="password" label="Пароль" name="password" fullWidth />
               {isSubmitting && <LinearProgress />}
-              <PrimaryButton
-                type="submit"
-                fullWidth
-                style={{ margin: '24px 0px 16px', padding: 15 }}
-                disabled={isSubmitting}
-              >
+              <PrimaryButton type="submit" fullWidth disabled={isSubmitting}>
                 Войти
               </PrimaryButton>
             </Form>

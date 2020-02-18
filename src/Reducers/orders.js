@@ -56,7 +56,7 @@ const orders = (state = initialState, action) => {
     case ORDERS.GET_USER_ORDERS_ERROR:
       return {
         ...state,
-        errors: 'Ошибка получения данныч',
+        errors: 'Ошибка получения данных',
         loading: false
       };
     case ORDERS.ADD_ORDER:

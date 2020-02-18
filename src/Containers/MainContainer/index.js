@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Box, Typography } from '@material-ui/core';
+
 import CardsContainer from 'Containers/CardsContainer';
 import Button from 'Components/Buttons';
-import { editOrder, cleanEditForm, getOrders } from 'Actions/orders/actions';
-import { getUserProfile } from 'Actions/login/actions';
 import FormContainer from 'Containers/FormContainer';
 import Spinner from 'Components/Spinner';
+
+import { editOrder, cleanEditForm, getOrders } from 'Actions/orders/actions';
+import { getUserProfile } from 'Actions/login/actions';
 
 const MainContainer = props => {
   const [totalPrice, setTotalPrice] = useState('');
   const [open, setOpen] = useState(false);
+  const ordersNotEmpty = props.orders && props.orders.length > 0;
 
   useEffect(() => {
     props.getOrders();
@@ -26,9 +29,7 @@ const MainContainer = props => {
     setTotalPrice(total);
   }, [props.orders]);
 
-  const openModal = () => {
-    setOpen(true);
-  };
+  const openModal = () => setOpen(true);
 
   const closeModal = () => {
     setOpen(false);
@@ -46,8 +47,10 @@ const MainContainer = props => {
       <Button onClick={openModal}>Добавить</Button>
       <CardsContainer editOrder={editOrderHandler} />
       <FormContainer open={open} closeModal={closeModal} />
-      {props.orders && props.orders.length > 0 && (
-        <Typography variant="h5">Общая стоимость заказа составляет {totalPrice} Руб</Typography>
+      {ordersNotEmpty && (
+        <Typography color="error" variant="h5">
+          Общая стоимость заказа составляет {totalPrice} Руб
+        </Typography>
       )}
     </Box>
   );

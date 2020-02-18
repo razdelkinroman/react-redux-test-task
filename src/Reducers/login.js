@@ -6,6 +6,7 @@ import { tokenInCache } from 'Core/Utils';
   ERROR - Ошибка входа.
 */
 export const USER_STATUSES = {
+  SING_IN: 'SING_IN',
   NOT_AUTHORIZED: 'NOT_AUTHORIZED',
   SUCCESS: 'SUCCESS',
   ERROR: 'ERROR'

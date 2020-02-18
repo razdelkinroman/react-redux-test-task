@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { OutlineTextField, OutlineSelect } from 'Components/Fields';
-import { SaveIconButton } from 'Components/Buttons';
+import Button from 'Components/Buttons';
 
 const useStyles = makeStyles({
   container: {
@@ -22,7 +22,7 @@ const initialState = {
   price: ''
 };
 
-const typeStatuses = [
+const typeDelivery = [
   { value: 'international', name: 'Международная' },
   { value: 'internal', name: 'Внутренняя' }
 ];
@@ -44,7 +44,6 @@ const OrderForm = props => {
       onSubmit={(values, { setSubmitting }) => {
         if (!values.id) {
           props.addOrder({ ...values, id: Math.random() });
-          console.log('!!@@@!@');
         } else {
           props.updateOrder(values);
         }
@@ -60,14 +59,14 @@ const OrderForm = props => {
             <OutlineTextField required label="Расстояние" name="distance" fullWidth />
             <OutlineSelect
               label="Тип доставки"
-              selectItems={typeStatuses}
+              selectItems={typeDelivery}
               name="type"
               value={formValues.type}
               className={classes.fullWidth}
             />
             <Typography variant="h6">Стоимость доставки: {price()} Руб</Typography>
             <Box className={classes.fullWidth}>
-              <SaveIconButton type="submit" onClick={() => setFieldValue('price', price())} />
+              <Button onClick={() => setFieldValue('price', price())}>Сохранить</Button>
             </Box>
           </Form>
         );

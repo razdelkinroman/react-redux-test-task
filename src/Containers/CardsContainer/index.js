@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Box } from '@material-ui/core';
-import Card from 'Components/Card';
 import { makeStyles } from '@material-ui/core/styles';
+
+import Card from 'Components/Card';
+
 import { deleteOrder } from 'Actions/orders/actions';
 
 const useStyles = makeStyles({

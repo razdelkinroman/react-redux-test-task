@@ -15,6 +15,9 @@ function PaperComponent(props) {
 }
 
 const useStyles = makeStyles({
+  window: {
+    background: 'darkgray'
+  },
   closeIcon: {
     position: 'absolute',
     top: '10px',
@@ -26,7 +29,7 @@ const useStyles = makeStyles({
 });
 
 const ModalWindow = ({ title, open, close, children }) => {
-  const modalStyles = useStyles();
+  const cls = useStyles();
   return (
     <Dialog
       fullWidth
@@ -39,10 +42,10 @@ const ModalWindow = ({ title, open, close, children }) => {
       transitionDuration={750}
     >
       <MuiDialogTitle disableTypography>
-        <Typography className={modalStyles.title} variant="h6">
+        <Typography className={cls.title} variant="h6">
           {title}
         </Typography>
-        <IconButton aria-label="close" onClick={close} className={modalStyles.closeIcon}>
+        <IconButton aria-label="close" onClick={close} className={cls.closeIcon}>
           <CloseIcon />
         </IconButton>
       </MuiDialogTitle>

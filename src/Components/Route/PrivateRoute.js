@@ -1,12 +1,15 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import useAuth from 'Core/Hooks/useAuth';
 
-export const PrivateRoute = ({ component: Component, isLogin, ...rest }) => {
+export const PrivateRoute = ({ component: Component, ...rest }) => {
+  const isLogin = useAuth();
+
   return (
     <Route
       {...rest}
       render={props =>
-        isLogin ? (
+        isLogin !== false ? (
           <Component {...props} />
         ) : (
           <Redirect

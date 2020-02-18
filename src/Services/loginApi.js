@@ -5,8 +5,8 @@ import Service from 'Services';
  * @param {login} Данные формы входа пользователя.
  */
 export async function getTokenApi(login) {
-  const userData = await Service('post', '/login', login);
-  return userData;
+  const token = await Service('post', '/login', login);
+  return token;
 }
 
 /**

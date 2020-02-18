@@ -1,27 +1,21 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Card,
-  CardContent,
-  Typography,
-  Box,
-  Tooltip,
-  Divider,
-  IconButton
-} from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Card, CardContent, Typography, Box, Divider } from '@material-ui/core';
+import { DeleteIconButton, EditIconButton } from 'Components/Buttons';
 
 const useStyles = makeStyles({
   card: {
     width: 300,
     height: 200,
     position: 'relative',
-    margin: '15px 15px 0 0'
+    margin: '15px 15px 0 0',
+    background: 'linear-gradient(180deg, #3e4247 0%, #353535f7 74%)',
+    color: 'white',
+    borderRadius: 20
   },
   title: {
     fontWeight: 500,
-    color: '#0a2896',
+    color: 'coral',
     lineHeight: 1.33,
     overflow: 'hidden',
     display: '-webkit-box',
@@ -31,6 +25,9 @@ const useStyles = makeStyles({
     textTransform: 'uppercase',
     '-webkit-line-clamp': 2,
     '-webkit-box-orient': 'vertical'
+  },
+  body: {
+    color: '#d2d5da'
   },
   footer: {
     position: 'absolute',
@@ -47,22 +44,23 @@ const useStyles = makeStyles({
   }
 });
 
+const typeDelivery = {
+  internal: 'Внутренняя',
+  international: 'Международная'
+};
+
 const OrderCard = ({ order, deleteOrder, editOrder }) => {
   const classes = useStyles();
   const { title, distance, type, price } = order;
 
   return (
-    <Card className={`${classes.card} `}>
-      <CardContent>
+    <Card className={classes.card}>
+      <CardContent className={classes.body}>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {title}
         </Typography>
-        <Typography color="textSecondary" gutterBottom>
-          Дальность доставки: {distance}км
-        </Typography>
-        <Typography color="textSecondary" gutterBottom>
-          Тип доставки: {type}
-        </Typography>
+        <Typography gutterBottom>Дальность доставки: {distance}км</Typography>
+        <Typography gutterBottom>Тип доставки: {typeDelivery[type]}</Typography>
         <Typography variant="h5" className={classes.price}>
           Цена {price} Руб
         </Typography>
@@ -70,16 +68,8 @@ const OrderCard = ({ order, deleteOrder, editOrder }) => {
       <Box className={classes.footer}>
         <Divider />
         <Box className={classes.action}>
-          <Tooltip title="Редактировать" aria-label="Редактировать">
-            <IconButton>
-              <EditIcon fontSize="small" onClick={() => editOrder(order)} />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Удалить" aria-label="Редактировать">
-            <IconButton>
-              <DeleteIcon fontSize="small" onClick={() => deleteOrder(order.id)} />
-            </IconButton>
-          </Tooltip>
+          <EditIconButton onClick={() => editOrder(order)} />
+          <DeleteIconButton onClick={() => deleteOrder(order.id)} />
         </Box>
       </Box>
     </Card>
