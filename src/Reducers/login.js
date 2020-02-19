@@ -27,7 +27,7 @@ export const USER = {
 const initialState = {
   userData: {},
   userStatus: tokenInCache() ? USER_STATUSES.SUCCESS : USER_STATUSES.NOT_AUTHORIZED,
-  errors: {},
+  errors: '',
   loading: false
 };
 
@@ -37,7 +37,7 @@ const login = (state = initialState, action) => {
       return {
         ...state,
         userStatus: USER_STATUSES.SING_IN,
-        errors: {},
+        errors: '',
         loading: true
       };
     case LOGIN.GET_TOKEN_SUCCESS:

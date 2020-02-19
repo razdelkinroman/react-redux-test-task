@@ -30,7 +30,7 @@ const data = [
     price: '900'
   },
   {
-    id: 2,
+    id: 4,
     title: 'Посылка №4',
     distance: '250',
     type: 'internal',

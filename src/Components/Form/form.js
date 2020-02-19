@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { OutlineTextField, OutlineSelect } from 'Components/Fields';
-import Button from 'Components/Buttons';
+import { PrimaryButton } from 'Components/Buttons';
 
 const useStyles = makeStyles({
   container: {
@@ -66,9 +66,9 @@ const OrderForm = props => {
             />
             <Typography variant="h6">Стоимость доставки: {price()} Руб</Typography>
             <Box className={classes.fullWidth}>
-              <Button type="submit" onClick={() => setFieldValue('price', price())}>
+              <PrimaryButton type="submit" onClick={() => setFieldValue('price', price())}>
                 Сохранить
-              </Button>
+              </PrimaryButton>
             </Box>
           </Form>
         );

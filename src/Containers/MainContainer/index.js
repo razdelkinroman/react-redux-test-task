@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { Box, Typography } from '@material-ui/core';
 
 import CardsContainer from 'Containers/CardsContainer';
-import Button from 'Components/Buttons';
+import { PrimaryButton } from 'Components/Buttons';
 import FormContainer from 'Containers/FormContainer';
 import Spinner from 'Components/Spinner';
 import Profile from 'Components/Profile';
@@ -17,6 +17,13 @@ const MainContainer = props => {
   const [totalPrice, setTotalPrice] = useState('');
   const [open, setOpen] = useState(false);
   const ordersNotEmpty = props.orders && props.orders.length > 0;
+  const getTotalPrice = items =>
+    items &&
+    items.reduce((sum, item) => {
+      return sum + Number(item.price);
+    }, 0);
+
+  const memoizedTotalPrice = useMemo(() => getTotalPrice(props.orders), [props.orders]);
 
   useEffect(() => {
     props.getOrders();
@@ -24,20 +31,15 @@ const MainContainer = props => {
   }, []);
 
   useEffect(() => {
-    const total =
-      props.orders &&
-      props.orders.reduce((sum, item) => {
-        return sum + Number(item.price);
-      }, 0);
-    setTotalPrice(total);
-  }, [props.orders]);
+    setTotalPrice(memoizedTotalPrice);
+  }, [memoizedTotalPrice]);
 
-  const openModal = () => setOpen(true);
-
-  const closeModal = () => {
-    setOpen(false);
+  const openModal = () => {
+    setOpen(true);
     props.cleanEditForm();
   };
+
+  const closeModal = () => setOpen(false);
 
   const editOrderHandler = order => {
     setOpen(true);
@@ -47,7 +49,7 @@ const MainContainer = props => {
   return (
     <Box component="main">
       {props.loading && <Spinner />}
-      <Button onClick={openModal}>Добавить</Button>
+      <PrimaryButton onClick={openModal}>Добавить</PrimaryButton>
       <Profile />
       <CardsContainer editOrder={editOrderHandler} />
       <FormContainer open={open} closeModal={closeModal} />

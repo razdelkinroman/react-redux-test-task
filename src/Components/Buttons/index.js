@@ -1,9 +1,10 @@
-import React, { memo } from 'react';
+import React, { useState } from 'react';
 import { Button, IconButton, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import DeleteModalWindow from 'Components/Modal/DeleteModalWindow';
 
 const styles = makeStyles({
   primary: {
@@ -18,7 +19,7 @@ const styles = makeStyles({
   }
 });
 
-const PrimaryButton = props => {
+export const PrimaryButton = props => {
   const classes = styles();
   return (
     <Button variant="contained" className={classes.primary} {...props}>
@@ -45,6 +46,23 @@ export const DeleteIconButton = props => {
   );
 };
 
+export const DeleteButton = function({ deleteAction }) {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  return (
+    <>
+      <DeleteIconButton onClick={() => setShowDeleteModal(true)} />
+      <DeleteModalWindow
+        open={showDeleteModal}
+        close={() => {
+          showDeleteModal(false);
+        }}
+        handleDelete={deleteAction}
+      />
+    </>
+  );
+};
+
 export const EditIconButton = props => {
   return (
     <Tooltip title="Редактировать">
@@ -54,5 +72,3 @@ export const EditIconButton = props => {
     </Tooltip>
   );
 };
-
-export default memo(PrimaryButton);

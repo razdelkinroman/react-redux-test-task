@@ -4,7 +4,7 @@ import { Avatar, Container, LinearProgress, Typography, Paper } from '@material-
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
-import PrimaryButton from 'Components/Buttons';
+import { PrimaryButton } from 'Components/Buttons';
 import { OutlineTextField } from 'Components/Fields';
 
 import schema from './schema';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Typography, Box, Divider } from '@material-ui/core';
-import { DeleteIconButton, EditIconButton } from 'Components/Buttons';
+import { DeleteButton, EditIconButton } from 'Components/Buttons';
 
 const useStyles = makeStyles({
   card: {
@@ -74,7 +74,7 @@ const OrderCard = ({ order, deleteOrder, editOrder }) => {
         <Divider />
         <Box className={classes.action}>
           <EditIconButton onClick={() => editOrder(order)} />
-          <DeleteIconButton onClick={() => deleteOrder(order.id)} />
+          <DeleteButton deleteAction={() => deleteOrder(order.id)} />
         </Box>
       </Box>
     </Card>
