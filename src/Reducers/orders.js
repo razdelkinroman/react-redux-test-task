@@ -4,7 +4,8 @@ export const ORDERS = {
   DELETE_ORDER: 'DELETE_ORDER',
   UPDATE_ORDER: 'UPDATE_ORDER',
   EDIT_ORDER: 'EDIT_ORDER',
-  CLEAN_EDIT_FORM: 'CLEAN_EDIT_FORM'
+  CLEAN_EDIT_FORM: 'CLEAN_EDIT_FORM',
+  GET_DISTANCE: 'GET_DISTANCE'
 };
 
 const data = [
@@ -12,29 +13,22 @@ const data = [
     id: 1,
     title: 'Посылка №1',
     distance: '500',
-    type: 'international',
+    type: 'express',
     price: '2500'
   },
   {
     id: 2,
     title: 'Посылка №2',
     distance: '100',
-    type: 'internal',
+    type: 'ems',
     price: '300'
   },
   {
     id: 3,
     title: 'Посылка №3',
     distance: '1000',
-    type: 'internal',
+    type: 'express',
     price: '900'
-  },
-  {
-    id: 4,
-    title: 'Посылка №4',
-    distance: '250',
-    type: 'internal',
-    price: '750'
   }
 ];
 
@@ -42,7 +36,8 @@ const initialState = {
   items: '',
   errors: '',
   editableOrder: '',
-  loading: true
+  loading: true,
+  distance: ''
 };
 
 const savedOrders = (state, item) => {
@@ -97,7 +92,13 @@ const orders = (state = initialState, action) => {
     case ORDERS.CLEAN_EDIT_FORM:
       return {
         ...state,
-        editableOrder: ''
+        editableOrder: '',
+        distance: ''
+      };
+    case ORDERS.GET_DISTANCE:
+      return {
+        ...state,
+        distance: action.payload
       };
     default:
       return state;

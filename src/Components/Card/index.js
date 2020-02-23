@@ -1,60 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Typography, Box, Divider } from '@material-ui/core';
-import { DeleteButton, EditIconButton } from 'Components/Buttons';
 
-const useStyles = makeStyles({
-  card: {
-    width: '24%',
-    height: 250,
-    position: 'relative',
-    margin: '15px 15px 0 0',
-    background: 'linear-gradient(180deg, #3e4247 0%, #353535f7 74%)',
-    color: 'white',
-    borderRadius: 20
-  },
-  title: {
-    fontWeight: 500,
-    color: 'coral',
-    lineHeight: 1.33,
-    overflow: 'hidden',
-    display: '-webkit-box',
-    maxHeight: 32,
-    marginBottom: 8,
-    paddingRight: 24,
-    textTransform: 'uppercase',
-    '-webkit-line-clamp': 2,
-    '-webkit-box-orient': 'vertical'
-  },
-  body: {
-    color: '#d2d5da',
-    position: 'relative',
-    height: 170
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 5,
-    width: '100%'
-  },
-  action: {
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  price: {
-    textAlign: 'end',
-    margin: '10px 0',
-    position: 'absolute',
-    bottom: 0,
-    right: 10
-  }
-});
+import { PrimaryIconButton, DeleteButton } from 'Components/Buttons';
 
-const typeDelivery = {
-  internal: 'Внутренняя',
-  international: 'Международная'
-};
+import { typeDelivery } from './const';
+import { styles } from './styles';
 
 const OrderCard = ({ order, deleteOrder, editOrder }) => {
+  const useStyles = makeStyles(styles);
   const classes = useStyles();
   const { title, distance, type, price } = order;
 
@@ -73,8 +27,8 @@ const OrderCard = ({ order, deleteOrder, editOrder }) => {
       <Box className={classes.footer}>
         <Divider />
         <Box className={classes.action}>
-          <EditIconButton onClick={() => editOrder(order)} />
-          <DeleteButton deleteAction={() => deleteOrder(order.id)} />
+          <PrimaryIconButton name="edit" tooltip="Редактировать" onClick={() => editOrder(order)} />
+          <DeleteButton onClick={() => deleteOrder(order.id)} />
         </Box>
       </Box>
     </Card>

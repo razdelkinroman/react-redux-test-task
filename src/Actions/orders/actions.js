@@ -39,3 +39,10 @@ export const cleanEditForm = () => {
     type: ORDERS.CLEAN_EDIT_FORM
   };
 };
+
+export const getDistance = distance => {
+  return {
+    type: ORDERS.GET_DISTANCE,
+    payload: distance
+  };
+};

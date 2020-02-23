@@ -8,11 +8,11 @@ import { PublicRoute } from 'Components/Route/PublicRoute';
 
 import 'index.css';
 
-const App = props => {
+const App = () => {
   return (
     <div className="App">
       <Switch>
-        <PublicRoute path="/login" component={LoginPage} />
+        <PublicRoute path="/login" exact component={LoginPage} />
         <PrivateRoute path="/" component={MainContainer} />
       </Switch>
     </div>

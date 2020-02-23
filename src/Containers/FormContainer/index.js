@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ModalWindow from 'Components/Modal';
-import Form from 'Components/Form/form';
+import Form from 'Components/Form';
 
 import { addOrder, updateOrder, cleanEditForm } from 'Actions/orders/actions';
 
@@ -13,6 +13,7 @@ const FormContainer = props => {
         closeModal={props.closeModal}
         editableOrder={props.editableOrder}
         updateOrder={props.updateOrder}
+        distance={props.distance}
       />
     </ModalWindow>
   );
@@ -20,7 +21,8 @@ const FormContainer = props => {
 
 const mapStateToProps = ({ orders }) => {
   return {
-    editableOrder: orders.editableOrder
+    editableOrder: orders.editableOrder,
+    distance: orders.distance
   };
 };
 

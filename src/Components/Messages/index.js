@@ -12,13 +12,11 @@ const useStyles = makeStyles({
 export default function ErrorAlert({ message }) {
   const classes = useStyles();
 
-  return (
-    message && (
-      <div className={classes.root}>
-        <Alert variant="filled" severity="error">
-          {message}
-        </Alert>
-      </div>
-    )
-  );
+  return message ? (
+    <div className={classes.root}>
+      <Alert variant="filled" severity="error">
+        {message}
+      </Alert>
+    </div>
+  ) : null;
 }

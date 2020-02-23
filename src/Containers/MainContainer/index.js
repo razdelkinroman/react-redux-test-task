@@ -49,7 +49,7 @@ const MainContainer = props => {
   return (
     <Box component="main">
       {props.loading && <Spinner />}
-      <PrimaryButton onClick={openModal}>Добавить</PrimaryButton>
+      <PrimaryButton name="Добавить" onClick={openModal} />
       <Profile />
       <CardsContainer editOrder={editOrderHandler} />
       <FormContainer open={open} closeModal={closeModal} />

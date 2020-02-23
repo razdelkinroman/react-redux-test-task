@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { Button, IconButton, Tooltip } from '@material-ui/core';
+import { Button, IconButton, Tooltip, Icon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import SaveIcon from '@material-ui/icons/Save';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import DeleteModalWindow from 'Components/Modal/DeleteModalWindow';
 
 const styles = makeStyles({
@@ -20,27 +17,23 @@ const styles = makeStyles({
 });
 
 export const PrimaryButton = props => {
+  const { name, ...otherProps } = props;
   const classes = styles();
+
   return (
-    <Button variant="contained" className={classes.primary} {...props}>
-      {props.children}
+    <Button variant="contained" className={classes.primary} {...otherProps}>
+      {name}
     </Button>
   );
 };
 
-export const SaveIconButton = props => {
-  return (
-    <IconButton {...props} color="primary">
-      <SaveIcon fontSize="large" />
-    </IconButton>
-  );
-};
+export const PrimaryIconButton = props => {
+  const { tooltip, size, name, color = 'secondary', ...otherProps } = props;
 
-export const DeleteIconButton = props => {
   return (
-    <Tooltip title="Удалить">
-      <IconButton {...props} color="secondary">
-        <DeleteIcon fontSize="small" />
+    <Tooltip title={tooltip}>
+      <IconButton color={color} {...otherProps}>
+        <Icon fontSize={size}>{name}</Icon>
       </IconButton>
     </Tooltip>
   );
@@ -51,24 +44,12 @@ export const DeleteButton = function({ deleteAction }) {
 
   return (
     <>
-      <DeleteIconButton onClick={() => setShowDeleteModal(true)} />
+      <PrimaryIconButton name="delete" tooltip="Удалить" onClick={() => setShowDeleteModal(true)} />
       <DeleteModalWindow
         open={showDeleteModal}
-        close={() => {
-          showDeleteModal(false);
-        }}
+        close={() => setShowDeleteModal(false)}
         handleDelete={deleteAction}
       />
     </>
-  );
-};
-
-export const EditIconButton = props => {
-  return (
-    <Tooltip title="Редактировать">
-      <IconButton {...props} color="secondary">
-        <EditIcon fontSize="small" />
-      </IconButton>
-    </Tooltip>
   );
 };
