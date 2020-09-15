@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
 import Card from 'Components/Card';
 
-import { deleteOrder } from 'Actions/orders/actions';
+import { deleteOrder, getAllOrders } from 'Actions/orders/actions';
 
 const useStyles = makeStyles({
   container: {
@@ -18,6 +17,10 @@ const useStyles = makeStyles({
 const CardsContainer = props => {
   const classes = useStyles();
   const { orders } = props;
+
+  useEffect(() => {
+    props.getAllOrders()
+  }, [])
 
   return (
     <Box className={classes.container}>
@@ -40,4 +43,4 @@ const mapStateToProps = ({ orders }) => {
   };
 };
 
-export default connect(mapStateToProps, { deleteOrder })(CardsContainer);
+export default connect(mapStateToProps, { deleteOrder, getAllOrders })(CardsContainer);

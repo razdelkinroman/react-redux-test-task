@@ -53,9 +53,7 @@ function LoginForm({ getToken }) {
               <OutlineTextField name="email" type="email" label="Email" fullWidth />
               <OutlineTextField type="password" label="Пароль" name="password" fullWidth />
               {isSubmitting && <LinearProgress />}
-              <PrimaryButton type="submit" fullWidth disabled={isSubmitting}>
-                Войти
-              </PrimaryButton>
+              <PrimaryButton name="Войти" type="submit" fullWidth disabled={isSubmitting} />
             </Form>
           )}
         />

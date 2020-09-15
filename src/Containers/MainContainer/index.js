@@ -8,7 +8,7 @@ import FormContainer from 'Containers/FormContainer';
 import Spinner from 'Components/Spinner';
 import Profile from 'Components/Profile';
 
-import { editOrder, cleanEditForm, getOrders } from 'Actions/orders/actions';
+import { openEditForm, cleanEditForm } from 'Actions/orders/actions';
 import { getUserProfile } from 'Actions/login/actions';
 
 import './styles.css';
@@ -26,7 +26,6 @@ const MainContainer = props => {
   const memoizedTotalPrice = useMemo(() => getTotalPrice(props.orders), [props.orders]);
 
   useEffect(() => {
-    props.getOrders();
     props.getUserProfile();
   }, []);
 
@@ -43,7 +42,7 @@ const MainContainer = props => {
 
   const editOrderHandler = order => {
     setOpen(true);
-    props.editOrder(order);
+    props.openEditForm(order);
   };
 
   return (
@@ -70,6 +69,6 @@ const mapStateToProps = ({ orders }) => {
   };
 };
 
-export default connect(mapStateToProps, { editOrder, cleanEditForm, getOrders, getUserProfile })(
+export default connect(mapStateToProps, { openEditForm, cleanEditForm, getUserProfile })(
   MainContainer
 );

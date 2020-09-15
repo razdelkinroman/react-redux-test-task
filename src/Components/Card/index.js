@@ -28,7 +28,7 @@ const OrderCard = ({ order, deleteOrder, editOrder }) => {
         <Divider />
         <Box className={classes.action}>
           <PrimaryIconButton name="edit" tooltip="Редактировать" onClick={() => editOrder(order)} />
-          <DeleteButton onClick={() => deleteOrder(order.id)} />
+          <DeleteButton deleteAction={() => deleteOrder(order._id)} />
         </Box>
       </Box>
     </Card>

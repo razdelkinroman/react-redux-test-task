@@ -1,36 +1,24 @@
 export const ORDERS = {
-  GET_ORDERS: 'GET_ORDERS',
-  ADD_ORDER: 'ADD_ORDER',
-  DELETE_ORDER: 'DELETE_ORDER',
-  UPDATE_ORDER: 'UPDATE_ORDER',
-  EDIT_ORDER: 'EDIT_ORDER',
+  GET_ALL_ORDERS_REQUEST: 'GET_ALL_ORDERS_REQUEST',
+  GET_ALL_ORDERS_SUCCESS: 'GET_ALL_ORDERS_SUCCESS',
+  GET_ALL_ORDERS_ERROR: 'GET_ALL_ORDERS_ERROR',
+
+  ADD_ORDER_REQUEST: 'ADD_ORDER_REQUEST',
+  ADD_ORDER_SUCCESS: 'ADD_ORDER_SUCCESS',
+  ADD_ORDER_ERROR: 'ADD_ORDER_ERROR',
+
+  UPDATE_ORDER_REQUEST: 'UPDATE_ORDER_REQUEST',
+  UPDATE_ORDER_SUCCESS: 'UPDATE_ORDER_SUCCESS',
+  UPDATE_ORDER_ERROR: 'UPDATE_ORDER_ERROR',
+
+  DELETE_ORDER_REQUEST: 'DELETE_ORDER_REQUEST',
+  DELETE_ORDER_SUCCESS: 'DELETE_ORDER_SUCCESS',
+  DELETE_ORDER_ERROR: 'DELETE_ORDER_ERROR',
+
+  OPEN_EDIT_FORM: 'OPEN_EDIT_FORM',
   CLEAN_EDIT_FORM: 'CLEAN_EDIT_FORM',
   GET_DISTANCE: 'GET_DISTANCE'
 };
-
-const data = [
-  {
-    id: 1,
-    title: 'Посылка №1',
-    distance: '500',
-    type: 'express',
-    price: '2500'
-  },
-  {
-    id: 2,
-    title: 'Посылка №2',
-    distance: '100',
-    type: 'ems',
-    price: '300'
-  },
-  {
-    id: 3,
-    title: 'Посылка №3',
-    distance: '1000',
-    type: 'express',
-    price: '900'
-  }
-];
 
 const initialState = {
   items: '',
@@ -40,51 +28,51 @@ const initialState = {
   distance: ''
 };
 
-const savedOrders = (state, item) => {
-  const values = state;
-  const index = values.findIndex(i => i.id === item.id);
-  values[index] = item;
-  return values;
-};
-
 const orders = (state = initialState, action) => {
   switch (action.type) {
-    case ORDERS.GET_ORDERS:
-      return {
-        ...state,
-        items: data,
-        errors: {},
-        loading: false
-      };
-    case ORDERS.GET_USER_ORDERS_SUCCESS:
+    case ORDERS.GET_ALL_ORDERS_REQUEST:
       return {
         ...state,
         items: [],
+        errors: {},
+        loading: true
+      };
+    case ORDERS.GET_ALL_ORDERS_SUCCESS:
+      return {
+        ...state,
+        items: action.payload,
         loading: false
       };
-    case ORDERS.GET_USER_ORDERS_ERROR:
+    case ORDERS.GET_ALL_ORDERS_ERROR:
       return {
         ...state,
-        errors: 'Ошибка получения данных',
+        errors: action.payload,
         loading: false
       };
-    case ORDERS.ADD_ORDER:
+    case ORDERS.ADD_ORDER_REQUEST:
+    case ORDERS.UPDATE_ORDER_REQUEST:
+    case ORDERS.DELETE_ORDER_REQUEST:
       return {
         ...state,
-        items: [...state.items, action.payload]
+        errors: {},
+        loading: true
       };
-    case ORDERS.DELETE_ORDER:
+    case ORDERS.ADD_ORDER_SUCCESS:
+    case ORDERS.UPDATE_ORDER_SUCCESS:
+    case ORDERS.DELETE_ORDER_SUCCESS:
       return {
         ...state,
-        items: state.items.filter(item => item.id !== action.payload)
+        loading: false
       };
-    case ORDERS.UPDATE_ORDER:
+    case ORDERS.ADD_ORDER_ERROR:
+    case ORDERS.UPDATE_ORDER_ERROR:
+    case ORDERS.DELETE_ORDER_ERROR:
       return {
         ...state,
-        items: [...savedOrders(state.items, action.payload)],
-        editableOrder: ''
+        errors: action.payload,
+        loading: false
       };
-    case ORDERS.EDIT_ORDER:
+    case ORDERS.OPEN_EDIT_FORM:
       return {
         ...state,
         editableOrder: action.payload

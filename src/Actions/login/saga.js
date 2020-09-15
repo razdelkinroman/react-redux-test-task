@@ -6,7 +6,7 @@ import { LOGIN, USER } from 'Reducers/login';
 function* getToken(action) {
   try {
     const { data } = yield call(getTokenApi, action.payload);
-    const token = data && data.token;
+    const token = data?.token;
     yield put({ type: LOGIN.GET_TOKEN_SUCCESS });
     yield localStorage.setItem('cacheToken', token);
   } catch ({ response }) {

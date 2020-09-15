@@ -8,6 +8,7 @@ import { PrimaryButton, PrimaryIconButton } from 'Components/Buttons';
 import YandexMap from 'Components/YandexMap';
 
 import { initialState, typesDelivery, EXPRESS_TARIFF, STANDART_TARIFF } from './const';
+
 import { styles } from './styles';
 
 const OrderForm = props => {
@@ -28,11 +29,7 @@ const OrderForm = props => {
       enableReinitialize
       initialValues={formValues}
       onSubmit={(values, { setSubmitting }) => {
-        if (!values.id) {
-          props.addOrder({ ...values, id: Math.random() });
-        } else {
-          props.updateOrder(values);
-        }
+        !values._id ? props.addOrder(values) : props.updateOrder(values);
         props.closeModal();
         setSubmitting(false);
       }}
