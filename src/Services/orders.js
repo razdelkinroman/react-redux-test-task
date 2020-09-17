@@ -1,10 +1,12 @@
 import axios from 'axios';
-
+import API_CONST from './const';
 /**
  * Получение списка посылок.
  */
-export async function getAllOrdersApi() {
-  const allOrders = await axios.get('http://localhost:4000/orders');
+export async function getAllOrdersApi(page) {
+  const allOrders = await axios.get(
+    `http://localhost:4000/orders?page=${page}&limit=${API_CONST.LIMIT_ORDER_FOR_VIEW}`
+  );
 
   return allOrders;
 }

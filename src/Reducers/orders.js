@@ -25,7 +25,9 @@ const initialState = {
   errors: '',
   editableOrder: '',
   loading: true,
-  distance: ''
+  distance: '',
+  currentPage: '1',
+  totalPages: 1
 };
 
 const orders = (state = initialState, action) => {
@@ -40,7 +42,9 @@ const orders = (state = initialState, action) => {
     case ORDERS.GET_ALL_ORDERS_SUCCESS:
       return {
         ...state,
-        items: action.payload,
+        items: action.payload.orders,
+        currentPage: action.payload.currentPage,
+        totalPages: action.payload.totalPages,
         loading: false
       };
     case ORDERS.GET_ALL_ORDERS_ERROR:

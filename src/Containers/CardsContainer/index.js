@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    marginBottom: 20
+    justifyContent: 'center'
   }
 });
 
@@ -19,8 +19,8 @@ const CardsContainer = props => {
   const { orders } = props;
 
   useEffect(() => {
-    props.getAllOrders()
-  }, [])
+    props.getAllOrders();
+  }, []);
 
   return (
     <Box className={classes.container}>

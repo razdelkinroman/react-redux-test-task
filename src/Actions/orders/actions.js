@@ -1,8 +1,9 @@
 import { ORDERS } from 'Reducers/orders';
 
-export const getAllOrders = () => {
+export const getAllOrders = page => {
   return {
-    type: ORDERS.GET_ALL_ORDERS_REQUEST
+    type: ORDERS.GET_ALL_ORDERS_REQUEST,
+    payload: page || 1
   };
 };
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { Box, Typography } from '@material-ui/core';
+import ReactPaginate from 'react-paginate';
 
 import CardsContainer from 'Containers/CardsContainer';
 import { PrimaryButton } from 'Components/Buttons';
@@ -8,7 +9,7 @@ import FormContainer from 'Containers/FormContainer';
 import Spinner from 'Components/Spinner';
 import Profile from 'Components/Profile';
 
-import { openEditForm, cleanEditForm } from 'Actions/orders/actions';
+import { openEditForm, cleanEditForm, getAllOrders } from 'Actions/orders/actions';
 import { getUserProfile } from 'Actions/login/actions';
 
 import './styles.css';
@@ -45,18 +46,32 @@ const MainContainer = props => {
     props.openEditForm(order);
   };
 
+  const onPageChange = page => {
+    props.getAllOrders(page.selected + 1);
+  };
+
   return (
     <Box component="main">
       {props.loading && <Spinner />}
       <PrimaryButton name="Добавить" onClick={openModal} />
-      <Profile />
-      <CardsContainer editOrder={editOrderHandler} />
-      <FormContainer open={open} closeModal={closeModal} />
       {ordersNotEmpty && (
-        <Typography color="error" variant="h5">
+        <Typography className="total-amount" color="error" variant="h5">
           Общая стоимость заказа составляет {totalPrice} Руб
         </Typography>
       )}
+      <Profile />
+      <CardsContainer editOrder={editOrderHandler} />
+      <FormContainer open={open} closeModal={closeModal} />
+      <ReactPaginate
+        nextLabel="&rarr;"
+        previousLabel="&larr;"
+        pageCount={props.totalPages}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={onPageChange}
+        containerClassName={'pagination'}
+        activeLinkClassName={'active'}
+      />
     </Box>
   );
 };
@@ -64,11 +79,16 @@ const MainContainer = props => {
 const mapStateToProps = ({ orders }) => {
   return {
     orders: orders.items,
+    totalPages: orders.totalPages,
+    currentPage: orders.currentPage,
     editableOrder: orders.editableOrder,
     loading: orders.loading
   };
 };
 
-export default connect(mapStateToProps, { openEditForm, cleanEditForm, getUserProfile })(
-  MainContainer
-);
+export default connect(mapStateToProps, {
+  openEditForm,
+  cleanEditForm,
+  getUserProfile,
+  getAllOrders
+})(MainContainer);

@@ -18,14 +18,26 @@ router.route('/create').post((req, res, next) => {
 });
 
 // READ Orders
-router.route('/').get((req, res) => {
-  orderSchema.find((error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.json(data);
-    }
-  });
+router.route('/').get(async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+  try {
+    const orders = await orderSchema
+      .find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+
+    const count = await orderSchema.countDocuments();
+
+    // return response with posts, total pages, and current page
+    res.json({
+      orders,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 // Get Single Order

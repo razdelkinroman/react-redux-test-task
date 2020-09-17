@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const styles = {
   spinner: {
     width: '100%',
-    background: 'rgba(242,242,242,0.4)',
+
     height: '100%',
     position: 'absolute',
     top: 0,
