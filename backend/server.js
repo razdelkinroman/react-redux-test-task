@@ -1,17 +1,21 @@
 let express = require('express');
 let mongoose = require('mongoose');
-let cors = require('cors');
 let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
+let cors = require('cors');
+require('dotenv').config();
 
 // Express Route
 const orderRoute = require('../backend/routes/order.route');
+const userRoute = require('../backend/routes/user.routes');
 
 // Connecting mongoDB Database
 mongoose.Promise = global.Promise;
 mongoose
   .connect(dbConfig.db, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: true
   })
   .then(
     () => {
@@ -19,6 +23,7 @@ mongoose
     },
     error => {
       console.log('Could not connect to database : ' + error);
+      process.exit();
     }
   );
 
@@ -31,15 +36,12 @@ app.use(
 );
 app.use(cors());
 app.use('/orders', orderRoute);
+app.use(userRoute);
 
 // PORT
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port);
-});
-
-app.use((err, request, response, next) => {
-  console.log(err);
 });
 
 app.use(function(err, req, res, next) {
