@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const initialValues = { email: 'eve.holt@reqres.in', password: 'cityslicka' };
+const initialValues = { name: 'user', password: '1qazXSW@#edc', email: 'mail@mail.ru' };
 
 function LoginForm({ getToken }) {
   const classes = useStyles();
@@ -50,7 +50,8 @@ function LoginForm({ getToken }) {
           validationSchema={schema}
           render={({ handleSubmit, isSubmitting }) => (
             <Form className={classes.form} onSubmit={handleSubmit}>
-              <OutlineTextField name="email" type="email" label="Email" fullWidth />
+              <OutlineTextField name="name" label="Имя пользователя" fullWidth />
+              <OutlineTextField name="email" label="Электронная почта" fullWidth />
               <OutlineTextField type="password" label="Пароль" name="password" fullWidth />
               {isSubmitting && <LinearProgress />}
               <PrimaryButton name="Войти" type="submit" fullWidth disabled={isSubmitting} />

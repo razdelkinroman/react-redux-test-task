@@ -7,7 +7,7 @@ const styles = makeStyles({
   primary: {
     position: 'absolute',
     top: 0,
-    right: 0
+    right: 20
   }
 });
 
@@ -15,7 +15,7 @@ export default function Profile() {
   const cls = styles();
   const [anchorEl, setAnchorEl] = useState(null);
   const profile = useSelector(state => state.login.userData);
-  const { avatar, first_name, last_name } = profile;
+  const { name, email } = profile;
 
   const handleClickLogout = () => {
     localStorage.removeItem('cacheToken');
@@ -33,8 +33,8 @@ export default function Profile() {
   return (
     <div>
       <IconButton onClick={handleClick} className={cls.primary}>
-        <Tooltip title={`${first_name} ${last_name}`}>
-          <Avatar alt={first_name} src={avatar} />
+        <Tooltip title={`${name} [${email}]`}>
+          <Avatar alt={name} />
         </Tooltip>
       </IconButton>
       <Menu

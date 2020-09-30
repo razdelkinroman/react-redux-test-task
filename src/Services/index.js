@@ -3,7 +3,7 @@ import axios from 'axios';
 function Service(httpMethod, path, payload, headers) {
   const cacheToken = localStorage.getItem('cacheToken');
   const headerAuth = cacheToken && { Authorization: `Bearer ${cacheToken}` };
-  const url = 'https://reqres.in/api';
+  const url = 'http://localhost:4000';
   const cancel = axios.CancelToken.source();
 
   const service = axios.create({
@@ -26,6 +26,17 @@ function Service(httpMethod, path, payload, headers) {
         method: 'POST',
         url: `${url}${path}`,
         data: payload
+      });
+    case 'put':
+      return service.request({
+        method: 'PUT',
+        url: `${url}${path}`,
+        data: payload
+      });
+    case 'delete':
+      return service.request({
+        method: 'DELETE',
+        url: `${url}${path}`
       });
     default:
       break;

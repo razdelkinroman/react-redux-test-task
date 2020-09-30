@@ -6,7 +6,6 @@ import { tokenInCache } from 'Core/Utils';
   ERROR - Ошибка входа.
 */
 export const USER_STATUSES = {
-  SING_IN: 'SING_IN',
   NOT_AUTHORIZED: 'NOT_AUTHORIZED',
   SUCCESS: 'SUCCESS',
   ERROR: 'ERROR'
@@ -56,7 +55,7 @@ const login = (state = initialState, action) => {
     case USER.GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        userData: action.payload.data
+        userData: action.payload
       };
     case USER.GET_USER_PROFILE_ERROR:
       return {
