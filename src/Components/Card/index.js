@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Typography, Box, Divider } from '@material-ui/core';
 
@@ -11,6 +11,8 @@ const OrderCard = ({ order, deleteOrder, editOrder }) => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const { title, distance, type, price } = order;
+
+  const editOrderHandler = useCallback(() => editOrder(order), [order, editOrder]);
 
   return (
     <Card className={classes.card}>
@@ -27,7 +29,7 @@ const OrderCard = ({ order, deleteOrder, editOrder }) => {
       <Box className={classes.footer}>
         <Divider />
         <Box className={classes.action}>
-          <PrimaryIconButton name="edit" tooltip="Редактировать" onClick={() => editOrder(order)} />
+          <PrimaryIconButton name="edit" tooltip="Редактировать" onClick={editOrderHandler} />
           <DeleteButton deleteAction={() => deleteOrder(order._id)} />
         </Box>
       </Box>

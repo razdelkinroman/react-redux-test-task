@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { Button, IconButton, Tooltip, Icon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import DeleteModalWindow from 'Components/Modal/DeleteModalWindow';
@@ -16,7 +16,7 @@ const styles = makeStyles({
   }
 });
 
-export const PrimaryButton = props => {
+export const PrimaryButton = memo(props => {
   const { name, ...otherProps } = props;
   const classes = styles();
 
@@ -25,9 +25,9 @@ export const PrimaryButton = props => {
       {name}
     </Button>
   );
-};
+});
 
-export const PrimaryIconButton = props => {
+export const PrimaryIconButton = memo(props => {
   const { tooltip, size, name, color = 'secondary', ...otherProps } = props;
 
   return (
@@ -37,9 +37,9 @@ export const PrimaryIconButton = props => {
       </IconButton>
     </Tooltip>
   );
-};
+});
 
-export const DeleteButton = function({ deleteAction }) {
+export const DeleteButton = memo(function({ deleteAction }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   return (
@@ -52,4 +52,4 @@ export const DeleteButton = function({ deleteAction }) {
       />
     </>
   );
-};
+});

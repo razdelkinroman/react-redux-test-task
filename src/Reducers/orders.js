@@ -35,7 +35,6 @@ const orders = (state = initialState, action) => {
     case ORDERS.GET_ALL_ORDERS_REQUEST:
       return {
         ...state,
-        items: [],
         errors: {},
         loading: true
       };

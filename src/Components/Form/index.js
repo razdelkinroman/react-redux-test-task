@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { Formik, Form } from 'formik';
 import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,7 +11,7 @@ import { initialState, typesDelivery, EXPRESS_TARIFF, STANDART_TARIFF } from './
 
 import { styles } from './styles';
 
-const OrderForm = props => {
+const OrderForm = memo(props => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const [openMap, setOpenMap] = useState(false);
@@ -76,6 +76,6 @@ const OrderForm = props => {
       }}
     />
   );
-};
+});
 
 export default OrderForm;

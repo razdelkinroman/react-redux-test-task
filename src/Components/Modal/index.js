@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Dialog, IconButton, Typography, Paper } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-const ModalWindow = ({ title, open, close, children }) => {
+const ModalWindow = memo(({ title, open, close, children }) => {
   const cls = useStyles();
   return (
     <Dialog
@@ -52,6 +52,6 @@ const ModalWindow = ({ title, open, close, children }) => {
       <MuiDialogContent style={{ paddingBottom: '25px' }}>{children}</MuiDialogContent>
     </Dialog>
   );
-};
+});
 
 export default ModalWindow;

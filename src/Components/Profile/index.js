@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { IconButton, Avatar, Tooltip, Menu, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
@@ -11,7 +11,7 @@ const styles = makeStyles({
   }
 });
 
-export default function Profile() {
+const Profile = memo(() => {
   const cls = styles();
   const [anchorEl, setAnchorEl] = useState(null);
   const profile = useSelector(state => state.login.userData);
@@ -49,4 +49,6 @@ export default function Profile() {
       </Menu>
     </div>
   );
-}
+});
+
+export default Profile;

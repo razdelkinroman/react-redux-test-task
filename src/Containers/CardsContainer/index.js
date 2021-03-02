@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { connect } from 'react-redux';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   }
 });
 
-const CardsContainer = props => {
+const CardsContainer = memo(props => {
   const classes = useStyles();
   const { orders } = props;
 
@@ -35,7 +35,7 @@ const CardsContainer = props => {
         ))}
     </Box>
   );
-};
+});
 
 const mapStateToProps = ({ orders }) => {
   return {

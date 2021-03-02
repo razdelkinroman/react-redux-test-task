@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { connect } from 'react-redux';
 import ModalWindow from 'Components/Modal';
 import Form from 'Components/Form';
 
 import { addOrder, updateOrder, cleanEditForm } from 'Actions/orders/actions';
 
-const FormContainer = props => {
+const FormContainer = memo(props => {
   return (
     <ModalWindow title="Редактирование заказа" open={props.open} close={props.closeModal}>
       <Form
@@ -17,7 +17,7 @@ const FormContainer = props => {
       />
     </ModalWindow>
   );
-};
+});
 
 const mapStateToProps = ({ orders }) => {
   return {

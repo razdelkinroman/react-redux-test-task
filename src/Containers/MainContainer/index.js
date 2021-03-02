@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Box, Typography } from '@material-ui/core';
 import ReactPaginate from 'react-paginate';
@@ -18,6 +18,7 @@ const MainContainer = props => {
   const [totalPrice, setTotalPrice] = useState('');
   const [open, setOpen] = useState(false);
   const ordersNotEmpty = props.orders && props.orders.length > 0;
+
   const getTotalPrice = items =>
     items &&
     items.reduce((sum, item) => {
@@ -34,17 +35,20 @@ const MainContainer = props => {
     setTotalPrice(memoizedTotalPrice);
   }, [memoizedTotalPrice]);
 
-  const openModal = () => {
+  const openModal = useCallback(() => {
     setOpen(true);
     props.cleanEditForm();
-  };
+  }, []);
 
-  const closeModal = () => setOpen(false);
+  const closeModal = useCallback(() => setOpen(false), []);
 
-  const editOrderHandler = order => {
-    setOpen(true);
-    props.openEditForm(order);
-  };
+  const editOrderHandler = useCallback(
+    order => {
+      setOpen(true);
+      props.openEditForm(order);
+    },
+    [props]
+  );
 
   const onPageChange = page => {
     props.getAllOrders(page.selected + 1);

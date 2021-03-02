@@ -1,9 +1,9 @@
 export const styles = {
   card: {
-    width: '24%',
+    width: '23%',
     height: 250,
     position: 'relative',
-    margin: '15px 15px 0 0',
+    margin: '0.5% 1%',
     background: 'linear-gradient(180deg, #383639 0%, #2c272b 74%)',
     color: 'white',
     borderRadius: 20
