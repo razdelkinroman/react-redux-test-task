@@ -1,4 +1,4 @@
-import { tokenInCache } from 'Core/Utils';
+import { tokenInCache, makeActionType } from 'Core/Utils';
 /*
 Статус пользователя.
   NOT_AUTHORIZED - Не авторизирован.
@@ -11,17 +11,8 @@ export const USER_STATUSES = {
   ERROR: 'ERROR'
 };
 
-export const LOGIN = {
-  GET_TOKEN_REQUEST: 'GET_TOKEN_REQUEST',
-  GET_TOKEN_SUCCESS: 'GET_TOKEN_SUCCESS',
-  GET_TOKEN_ERROR: 'GET_TOKEN_ERROR'
-};
-
-export const USER = {
-  GET_USER_PROFILE_REQUEST: 'GET_USER_PROFILE_REQUEST',
-  GET_USER_PROFILE_SUCCESS: 'GET_USER_PROFILE_SUCCESS',
-  GET_USER_PROFILE_ERROR: 'GET_USER_PROFILE_ERROR'
-};
+export const LOGIN = makeActionType('GET_TOKEN');
+export const USER = makeActionType('GET_USER_PROFILE');
 
 const initialState = {
   userData: {},
