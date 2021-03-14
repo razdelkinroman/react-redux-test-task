@@ -1,18 +1,10 @@
 import React, { useState, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { IconButton, Avatar, Tooltip, Menu, MenuItem } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 
-const styles = makeStyles({
-  primary: {
-    position: 'absolute',
-    top: 0,
-    right: 20
-  }
-});
+import './styles.css';
 
 const Profile = memo(() => {
-  const cls = styles();
   const [anchorEl, setAnchorEl] = useState(null);
   const profile = useSelector(state => state.login.userData);
   const { name, email } = profile;
@@ -31,8 +23,8 @@ const Profile = memo(() => {
   };
 
   return (
-    <div>
-      <IconButton onClick={handleClick} className={cls.primary}>
+    <div className="profile">
+      <IconButton onClick={handleClick} className="profile__icon">
         <Tooltip title={`${name} [${email}]`}>
           <Avatar alt={name} />
         </Tooltip>

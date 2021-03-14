@@ -5,7 +5,7 @@ import { Box } from '@material-ui/core';
 import pick from 'lodash/pick';
 
 import CardsContainer from 'Containers/CardsContainer';
-import { PrimaryButton } from 'Components/Buttons';
+
 import { Pagination } from 'Components/Pagination';
 import FormContainer from 'Containers/FormContainer';
 import Spinner from 'Components/Spinner';
@@ -40,11 +40,10 @@ const MainContainer = props => {
   }, []);
 
   return (
-    <Box component="main">
+    <Box component="main" className="main">
       {props.loading && <Spinner />}
-      <PrimaryButton name="Добавить" onClick={openModal} />
       <Profile />
-      <CardsContainer editOrder={editOrderHandler} />
+      <CardsContainer editOrder={editOrderHandler} openModal={openModal} />
       <FormContainer open={open} closeModal={closeModal} />
       <Pagination onPageChange={onPageChangeHandler} totalPages={props.totalPages} />
     </Box>

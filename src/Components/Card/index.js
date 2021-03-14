@@ -16,19 +16,19 @@ const OrderCard = ({ order, deleteOrder, editOrder }) => {
 
   return (
     <Card className={classes.card}>
-      <CardContent className={classes.body}>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
+      <CardContent className={classes.card__body}>
+        <Typography className={classes.card__title} color="textSecondary" gutterBottom>
           {title}
         </Typography>
         <Typography gutterBottom>Дальность доставки: {distance}км</Typography>
         <Typography gutterBottom>Тип доставки: {typeDelivery[type]}</Typography>
-        <Typography variant="h5" className={classes.price}>
-          Цена {price} Руб
+        <Typography variant="h6" className={classes.card__price}>
+          {price} Руб
         </Typography>
       </CardContent>
-      <Box className={classes.footer}>
+      <Box className={classes.card_footer}>
         <Divider />
-        <Box className={classes.action}>
+        <Box className={classes.card__actions}>
           <PrimaryIconButton name="edit" tooltip="Редактировать" onClick={editOrderHandler} />
           <DeleteButton deleteAction={() => deleteOrder(order._id)} />
         </Box>

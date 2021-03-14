@@ -1,0 +1,29 @@
+.cards__container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 18px;
+}
+
+@media screen and (max-width: 1200px) {
+  .cards__container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .cards__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cards__container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import ReactPaginate from 'react-paginate';
+import './styles.css';
 
 export const Pagination = memo(props => {
   const { totalPages, onPageChange } = props;
@@ -13,7 +14,7 @@ export const Pagination = memo(props => {
       pageRangeDisplayed={5}
       onPageChange={onPageChange}
       containerClassName={'pagination'}
-      activeLinkClassName={'active'}
+      activeLinkClassName={'active-page'}
     />
   );
 });
